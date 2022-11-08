@@ -1,0 +1,39 @@
+﻿Estimate summary
+Upfront cost,Monthly cost,Total 12 months cost,Currency
+3.2768,18935.62,227227.44,USD
+,,* Includes upfront cost
+
+
+Detailed Estimate
+Group hierarchy,Region,Description,Service,Upfront,Monthly,First 12 months total,Currency,Configuration summary
+Increased_Cost Estimate,US East (N. Virginia),S3 Storage for pictures/movies etc,S3 Standard,3.2768,235.52,2829.52,USD,"S3 Standard storage (10 TB per month), S3 Standard Average Object Size (16 MB)"
+Increased_Cost Estimate,US East (N. Virginia),S3 Storage for pictures/movies etc,Data Transfer,0,0,0.00,USD,"DT Inbound: Internet (0 TB per month), DT Outbound: Amazon CloudFront (0 TB per month)"
+Increased_Cost Estimate,US East (N. Virginia),,Amazon CloudFront,0,3428,41136.00,USD,"Data transfer out to internet (40 TB per month), Data transfer out to origin (0 GB per month), Number of requests (HTTPS) (100000000 per month)"
+Increased_Cost Estimate > Region 1 (N. Virginia),US East (N. Virginia),Web-Server,Amazon EC2,0,606.67,7280.04,USD,"Operating system (Linux), Quantity (6), Pricing strategy (On-Demand Instances), Storage amount (30 GB), Instance type (t4g.xlarge)"
+Increased_Cost Estimate > Region 1 (N. Virginia),US East (N. Virginia),App Server,Amazon EC2,0,606.67,7280.04,USD,"Operating system (Linux), Quantity (6), Pricing strategy (On-Demand Instances), Storage amount (30 GB), Instance type (t4g.xlarge)"
+Increased_Cost Estimate > Region 1 (N. Virginia),US East (N. Virginia),Master DB Region 1,Amazon RDS for PostgreSQL,0,2850.96,34211.52,USD,"Storage volume (General Purpose SSD (gp2)), Storage amount (1 TB per month), Nodes (1), Instance Type (db.m5.4xlarge), Utilization (On-Demand only) (100 %Utilized/Month), Deployment Option (Multi-AZ), Pricing Model (OnDemand), Additional backup storage (5 TB), Total Size of Backup Processed for Export (GB) (5000 per month)"
+Increased_Cost Estimate > Region 1 (N. Virginia),US East (N. Virginia),2x Read Replica Region 1,Amazon RDS for PostgreSQL,0,2850.96,34211.52,USD,"Storage volume (General Purpose SSD (gp2)), Storage amount (1 TB per month), Nodes (2), Instance Type (db.m5.4xlarge), Utilization (On-Demand only) (100 %Utilized/Month), Deployment Option (Single-AZ), Pricing Model (OnDemand), Additional backup storage (5 TB), Total Size of Backup Processed for Export (GB) (5000 per month)"
+Increased_Cost Estimate > Region 1 (N. Virginia),US East (N. Virginia),,VPN Connection,0,0,0.00,USD,Working days per month (22)
+Increased_Cost Estimate > Region 1 (N. Virginia),US East (N. Virginia),,Network Address Translation (NAT) Gateway,0,157.86,1894.32,USD,Number of NAT Gateways (2)
+Increased_Cost Estimate > Region 1 (N. Virginia),US East (N. Virginia),,Data Transfer,0,512,6144.00,USD,"DT Inbound: Not selected (0 TB per month), DT Outbound: US East (Ohio) (50 TB per month), DT Intra-Region: (0 TB per month), Data transfer cost (512)"
+Increased_Cost Estimate > Region 1 (N. Virginia),US East (N. Virginia),,Application Load Balancer,0,196.69,2360.28,USD,Number of Application Load Balancers (2)
+Increased_Cost Estimate > Region 2 (Ohio),US East (Ohio),App Server,Amazon EC2,0,606.67,7280.04,USD,"Operating system (Linux), Quantity (6), Pricing strategy (On-Demand Instances), Storage amount (30 GB), Instance type (t4g.xlarge)"
+Increased_Cost Estimate > Region 2 (Ohio),US East (Ohio),Web-Server,Amazon EC2,0,606.67,7280.04,USD,"Operating system (Linux), Quantity (6), Pricing strategy (On-Demand Instances), Storage amount (30 GB), Instance type (t4g.xlarge)"
+Increased_Cost Estimate > Region 2 (Ohio),US East (Ohio),Read Replica region 2 (multi AZ),Amazon RDS for PostgreSQL,0,3071.44,36857.28,USD,"Storage volume (Provisioned IOPS SSD (io1)), Provisioning IOPS (1000), Storage amount (1 TB per month), Nodes (1), Instance Type (db.m5.4xlarge), Utilization (On-Demand only) (100 %Utilized/Month), Deployment Option (Multi-AZ), Pricing Model (OnDemand), Additional backup storage (5 TB), Total Size of Backup Processed for Export (GB) (5000 per month)"
+Increased_Cost Estimate > Region 2 (Ohio),US East (Ohio),2x Read Replica Region 2,Amazon RDS for PostgreSQL,0,2850.96,34211.52,USD,"Storage volume (General Purpose SSD (gp2)), Storage amount (1 TB per month), Nodes (2), Instance Type (db.m5.4xlarge), Utilization (On-Demand only) (100 %Utilized/Month), Deployment Option (Single-AZ), Pricing Model (OnDemand), Additional backup storage (5 TB), Total Size of Backup Processed for Export (GB) (5000 per month)"
+Increased_Cost Estimate > Region 2 (Ohio),US East (Ohio),,VPN Connection,0,0,0.00,USD,Working days per month (22)
+Increased_Cost Estimate > Region 2 (Ohio),US East (Ohio),,Network Address Translation (NAT) Gateway,0,157.86,1894.32,USD,Number of NAT Gateways (2)
+Increased_Cost Estimate > Region 2 (Ohio),US East (Ohio),,Data Transfer,0,0,0.00,USD,"DT Inbound: Not selected (0 TB per month), DT Outbound: Not selected (0 TB per month), DT Intra-Region: (0 TB per month)"
+Increased_Cost Estimate > Region 2 (Ohio),US East (Ohio),,Application Load Balancer,0,196.69,2360.28,USD,Number of Application Load Balancers (2)
+
+
+
+Acknowledgement
+"* AWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services."
+
+Narrative of changes:
+The single region setup has been duplicated to a second region with the same sizing to increase response times of the application.
+- Cloudfront datavolume has been increased 
+- Each region has one multi AZ DB and 2 read replicas. The multi AZ DB in region 2 is readonly but can be promoted in case of problems in region 1
+- DB server have been adapted to a server class available in both regions
+- Data transfer between regions has been considered

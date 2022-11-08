@@ -1,0 +1,26 @@
+﻿Estimate summary
+Upfront cost,Monthly cost,Total 12 months cost,Currency
+3.2768,6334.330000000002,76011.96000000002,USD
+,,* Includes upfront cost
+
+
+Detailed Estimate
+Group hierarchy,Region,Description,Service,Upfront,Monthly,First 12 months total,Currency,Configuration summary
+Reduced_Cost_Estimate,US East (N. Virginia),S3 Storage for pictures/movies etc,S3 Standard,3.2768,235.52,2829.52,USD,"S3 Standard storage (10 TB per month), S3 Standard Average Object Size (16 MB)"
+Reduced_Cost_Estimate,US East (N. Virginia),S3 Storage for pictures/movies etc,Data Transfer,0,0,0.00,USD,"DT Inbound: Internet (0 TB per month), DT Outbound: Amazon CloudFront (0 TB per month)"
+Reduced_Cost_Estimate,US East (N. Virginia),,Amazon CloudFront,0,1729.6,20755.20,USD,"Data transfer out to internet (20 TB per month), Data transfer out to origin (0 GB per month), Number of requests (HTTPS) (40000000 per month)"
+Reduced_Cost_Estimate,US East (N. Virginia),,VPN Connection,0,0,0.00,USD,Working days per month (22)
+Reduced_Cost_Estimate,US East (N. Virginia),,Network Address Translation (NAT) Gateway,0,157.86,1894.32,USD,Number of NAT Gateways (2)
+Reduced_Cost_Estimate,US East (N. Virginia),,Amazon RDS for PostgreSQL,0,2801.32,33615.84,USD,"Storage volume (General Purpose SSD (gp2)), Storage amount (1 TB per month), Nodes (2), Instance Type (db.m2.4xlarge), Utilization (On-Demand only) (100 %Utilized/Month), Deployment Option (Single-AZ), Pricing Model (OnDemand), Additional backup storage (5 TB), Total Size of Backup Processed for Export (GB) (5000 per month)"
+Reduced_Cost_Estimate,US East (N. Virginia),,Application Load Balancer,0,196.69,2360.28,USD,Number of Application Load Balancers (2)
+Reduced_Cost_Estimate,US East (N. Virginia),Web-Server,Amazon EC2,0,606.67,7280.04,USD,"Operating system (Linux), Quantity (6), Pricing strategy (On-Demand Instances), Storage amount (30 GB), Instance type (t4g.xlarge)"
+Reduced_Cost_Estimate,US East (N. Virginia),App Server,Amazon EC2,0,606.67,7280.04,USD,"Operating system (Linux), Quantity (6), Pricing strategy (On-Demand Instances), Storage amount (30 GB), Instance type (t4g.xlarge)"
+
+
+
+Acknowledgement
+"* AWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services."
+
+Narrative of changes:
+As I have not yet any experience on the application performance and the required scaling, I am still staying with the on-demand ec2 instances. Instead I changed the database from multi-AZ to single-AZ.
+We have a read replica in a different AZ which we can promote in case of problems with the AZ of the master db.
